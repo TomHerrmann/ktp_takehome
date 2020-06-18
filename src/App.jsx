@@ -25,9 +25,11 @@ const App = () => {
     <div className="app">
       <div className="title-container">
         <h1>Kaplan Books</h1>
-        {/* search bar */}
-        {/* new book button */}
-        {/* book cards */}
+      </div>
+      <Search /> {/* add onSearch functionality & searchQuery state */}
+      <Button /> {/* add onClick functionality */}
+      <div className="book-container">
+        {/* book cards logic / add book object - {title, author, publisher} to state*/}
       </div>
     </div>
   );
