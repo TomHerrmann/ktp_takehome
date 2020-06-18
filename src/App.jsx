@@ -34,8 +34,6 @@ const App = () => {
       const booksPromise = await fetch(enums.apiURL);
       const books = await booksPromise.json();
 
-      console.log('books in fetch --> ', books);
-
       actions.books_populate(books);
       // setIsLoading(false);
     };
@@ -46,6 +44,8 @@ const App = () => {
       console.log(`Fetch failed with ${err}`);
     }
   }, []);
+
+  console.log('books in state --> ', this.state.books);
 
   return (
     <main className="app">
