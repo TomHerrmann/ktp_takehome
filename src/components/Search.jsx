@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Search = ({ onSearch, searchQuery }) => {
   return (
-    <div className="search-container">
+    <section className="search-container">
       <form onSubmit={(event) => event.preventDefault()}>
         <label>
           <input
@@ -15,7 +15,7 @@ const Search = ({ onSearch, searchQuery }) => {
           />
         </label>
       </form>
-    </div>
+    </section>
   );
 };
 

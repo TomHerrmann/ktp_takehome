@@ -1,37 +1,65 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import * as types from '../constants/actionTypes';
+import * as actions from './actions/action';
+import * as types from './constants/actionTypes';
 import store from './store';
 
+import AddBookButton from './components/AddBookButton.jsx';
 import BookCard from './components/BookCard.jsx';
 import LoadingSpinner from './components/LoadingSpinner.jsx';
 import Search from './components/Search.jsx';
+
+import * as enums from './utils/enums';
 
 const mapStateToProps = (store) => {
   return Object.assign({}, store, {});
 };
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      /* action creators */
-    },
-    dispatch
-  );
+  bindActionCreators({ types }, dispatch);
 
 const App = () => {
+  // const [isLoading, setIsLoading] = useState(true);
+  const [formInput, setFormQuery] = useState({
+    title: '',
+    author: '',
+    publisher: '',
+  });
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    const fetchAllBooks = async () => {
+      console.log('hitting');
+      const booksPromise = await fetch(enums.apiURL);
+      const books = await booksPromise.json();
+
+      console.log('books in fetch --> ', books);
+
+      actions.books_populate(books);
+      // setIsLoading(false);
+    };
+
+    try {
+      fetchAllBooks();
+    } catch (err) {
+      console.log(`Fetch failed with ${err}`);
+    }
+  }, []);
+
   return (
-    <div className="app">
-      <div className="title-container">
+    <main className="app">
+      <header className="top-container">
         <h1>Kaplan Books</h1>
-      </div>
-      <Search /> {/* add onSearch functionality & searchQuery state */}
-      <Button /> {/* add onClick functionality */}
-      <div className="book-container">
-        {/* book cards logic / add book object - {title, author, publisher} to state*/}
-      </div>
-    </div>
+        <AddBookButton /> {/* add onClick functionality */}
+      </header>
+      <section className="main-container">
+        <Search /> {/* add onSearch functionality & searchQuery state */}
+        <section className="book-container">
+          {/* book cards logic / add book object - {title, author, publisher} to state*/}
+        </section>
+      </section>
+    </main>
   );
 };
 
