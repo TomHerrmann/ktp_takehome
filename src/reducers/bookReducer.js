@@ -9,7 +9,12 @@ const booksReducer = (state = initialState, action) => {
     case types.BOOKS_ADD:
       return state;
     case types.BOOKS_POPULATE:
-      return Object.assign({}, state, { books });
+      const books = action.payload;
+      // console.log('books in reducer --> ', books);
+      return {
+        ...state,
+        books,
+      };
     case types.FORM_SUBMIT:
       return state;
     case types.SEARCH_SUBMIT:
