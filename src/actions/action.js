@@ -1,26 +1,26 @@
 import * as types from '../constants/actionTypes';
 
-export const api_error = (error) => ({
+export const apiError = (error) => ({
   type: types.API_ERROR,
   payload: error,
 });
 
-export const books_ad = () => ({
+export const booksAd = () => ({
   type: types.BOOKS_ADD,
   payload: null,
 });
 
-export const books_populate = (books) => ({
+export const booksPopulate = (books) => ({
   type: types.BOOKS_POPULATE,
   payload: books,
 });
 
-export const form_submit = (formInput) => ({
+export const formSubmit = (formInput) => ({
   type: types.FORM_SUBMIT,
   payload: formInput,
 });
 
-export const search_submit = (searchQuery) => ({
+export const searchSubmit = (searchQuery) => ({
   type: types.SEARCH_SUBMIT,
   payload: searchQuery,
 });
