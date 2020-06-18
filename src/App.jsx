@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useStore } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './actions/action';
 import * as types from './constants/actionTypes';
@@ -11,15 +11,9 @@ import LoadingSpinner from './components/LoadingSpinner.jsx';
 import Search from './components/Search.jsx';
 
 import * as enums from './utils/enums';
+import createBookArray from './utils/createBookArray';
 
-const mapStateToProps = (store) => {
-  return Object.assign({}, store, {});
-};
-
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ types }, dispatch);
-
-const App = () => {
+const App = ({ booksPopulate }) => {
   // const [isLoading, setIsLoading] = useState(true);
   const [formInput, setFormQuery] = useState({
     title: '',
@@ -30,11 +24,10 @@ const App = () => {
 
   useEffect(() => {
     const fetchAllBooks = async () => {
-      console.log('hitting');
       const booksPromise = await fetch(enums.apiURL);
       const books = await booksPromise.json();
 
-      actions.books_populate(books);
+      booksPopulate(createBookArray(books.items));
       // setIsLoading(false);
     };
 
@@ -45,7 +38,8 @@ const App = () => {
     }
   }, []);
 
-  console.log('books in state --> ', this.state.books);
+  const store = useStore();
+  console.log('store --> ', store.getState());
 
   return (
     <main className="app">
@@ -62,6 +56,13 @@ const App = () => {
     </main>
   );
 };
+
+const mapStateToProps = (state) => {
+  return state;
+};
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ ...actions }, dispatch);
 
 const AppContainer = connect(
   mapStateToProps,
