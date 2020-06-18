@@ -14,7 +14,7 @@ import * as enums from './utils/enums';
 import createBookArray from './utils/createBookArray';
 
 const App = ({ booksPopulate }) => {
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [formInput, setFormQuery] = useState({
     title: '',
     author: '',
@@ -28,7 +28,7 @@ const App = ({ booksPopulate }) => {
       const books = await booksPromise.json();
 
       booksPopulate(createBookArray(books.items));
-      // setIsLoading(false);
+      setIsLoading(false);
     };
 
     try {
@@ -44,12 +44,12 @@ const App = ({ booksPopulate }) => {
   return (
     <main className="app">
       <header className="top-container">
-        <h1>Kaplan Books</h1>
+        <h1>Books</h1>
         <AddBookButton /> {/* add onClick functionality */}
       </header>
-      <section className="main-container">
+      <section className="body-container">
         <Search /> {/* add onSearch functionality & searchQuery state */}
-        <section className="book-container">
+        <section className="books-container">
           {/* book cards logic / add book object - {title, author, publisher} to state*/}
         </section>
       </section>
