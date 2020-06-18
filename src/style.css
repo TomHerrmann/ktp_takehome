@@ -1,6 +1,15 @@
+:root {
+  --ktp-background: #e0e0e0;
+  --ktp-background-secondary: #f8f8f8;
+  --ktp-color: #4682b4;
+  --ktp-color-secondary: #101010;
+  --ktp-border: #707070;
+  --ktp-shadow: #707070;
+}
+
 body {
-  background-color: gray;
-  color: whitesmoke;
+  background-color: var(--ktp-background);
+  color: var(--ktp-color);
   font-family: sans-serif;
 }
 
@@ -8,4 +17,119 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.title-container h1 {
+  color: var(--ktp-color-secondary);
+}
+
+.add-book-button-container button {
+  border: none;
+  background-color: var(--ktp-color);
+  color: var(--ktp-background-secondary);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s;
+}
+
+.add-book-button-container button:hover {
+  background-color: var(--ktp-background-secondary);
+  color: var(--ktp-color);
+}
+
+.search-container {
+  width: 148px;
+  height: 32px;
+
+  margin: 15px;
+}
+
+.search-container input {
+  all: unset;
+
+  height: 30px;
+  width: 100%;
+
+  padding-left: 20px;
+  margin-top: -10px;
+  margin-bottom: 5px;
+
+  border: none;
+  border-bottom: 1px solid var(--ktp-border);
+
+  outline: none;
+}
+
+.book-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  max-width: 1000px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+
+  width: 304px;
+  height: 400px;
+  margin: 10px;
+  padding: 3px;
+
+  background-color: var(--ktp-background-secondary);
+  color: var(--ktp-color-secondary);
+
+  box-shadow: 4px 8px 10px var(--ktp-shadow);
+  border-radius: 5px;
+}
+
+.book-card ul {
+  all: unset;
+  list-style-type: none;
+}
+
+.book-card li {
+  margin: 5px;
+}
+
+/* animated spinner source - https://loading.io/css/*/
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  width: 200px;
+  height: 200px;
+}
+.loading-spinner div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid var(--ktp-color);
+  border-radius: 50%;
+  animation: loading-spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: var(--ktp-color) transparent transparent transparent;
+}
+.loading-spinner div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.loading-spinner div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.loading-spinner div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes loading-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
