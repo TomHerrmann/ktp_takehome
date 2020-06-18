@@ -5,7 +5,6 @@ import store from './store';
 import './style.css';
 
 import AppContainer from './App.jsx';
-// import App from './App.jsx';
 
 render(
   <Provider store={store}>
@@ -13,5 +12,3 @@ render(
   </Provider>,
   document.querySelector('#root')
 );
-
-// render(<App />, document.querySelector('#root'));
