@@ -24,16 +24,13 @@ const CreateBookModal = ({
       <form
         onSubmit={(event) => {
           event.preventDefault();
-            dispatch(
-              booksCreate(
-                formTitle,
-                formAuthors,
-                formPublishedDate,
-                formPublisher
-              )
-            );
-            dispatch(modalToggle());
-          }
+
+          const authArr = formAuthors.split(', ');
+
+          dispatch(
+            booksCreate(formTitle, authArr, formPublisher, formPublishedDate)
+          );
+          dispatch(modalToggle());
         }}
       >
         <label>

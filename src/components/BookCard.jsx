@@ -1,5 +1,4 @@
 import React from 'react';
-import authorsArrayToString from '../utils/authorsArrayToString';
 
 const BookCards = ({ book }) => {
   const { title, authors, publisher, publishedDate } = book;
