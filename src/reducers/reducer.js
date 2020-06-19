@@ -28,8 +28,8 @@ const reducer = (state = initialState, action) => {
     case types.FORM_SUBMIT:
       return state;
     case types.MODAL_TOGGLE:
-      const modalOpened = state.modalOpened;
-      console.log('hitting mt reducer');
+      const modalOpened = !state.modalOpened;
+
       return {
         ...state,
         modalOpened,
