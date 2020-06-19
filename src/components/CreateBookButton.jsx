@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const AddBookButton = () => {
+const CreateBookButton = () => {
   return (
     <section className="add-book-button-container">
       <button onClick={() => {}}>Create New Book</button>
@@ -8,4 +8,4 @@ const AddBookButton = () => {
   );
 };
 
-export default AddBookButton;
+export default CreateBookButton;
