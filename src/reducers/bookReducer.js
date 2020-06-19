@@ -6,7 +6,7 @@ const booksReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.API_ERROR:
       return state;
-    case types.BOOKS_ADD:
+    case types.BOOKS_CREATE:
       return state;
     case types.BOOKS_POPULATE:
       const books = action.payload;

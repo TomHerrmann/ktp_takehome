@@ -5,8 +5,8 @@ export const apiError = (error) => ({
   payload: error,
 });
 
-export const booksAd = () => ({
-  type: types.BOOKS_ADD,
+export const booksCreate = () => ({
+  type: types.BOOKS_CREATE,
   payload: null,
 });
 
