@@ -10,9 +10,14 @@ export const appLoaded = (appLoaded) => ({
   payload: appLoaded,
 });
 
-export const booksCreate = () => ({
+export const booksCreate = (
+  title,
+  authors,
+  publisher = 'N/A',
+  publishedDate
+) => ({
   type: types.BOOKS_CREATE,
-  payload: null,
+  payload: { title, authors, publisher, publishedDate },
 });
 
 export const booksPopulate = (books) => ({

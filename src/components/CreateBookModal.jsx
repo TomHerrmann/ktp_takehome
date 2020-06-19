@@ -1,9 +1,18 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import { connect, useStore } from 'react-redux';
+import { useStore, useDispatch } from 'react-redux';
+import { booksCreate, modalToggle } from '../actions/actions';
 
-const CreateBookModal = ({ onInputChange }) => {
+const CreateBookModal = ({
+  formAuthors,
+  formPublishedDate,
+  formPublisher,
+  formTitle,
+  onInputChange,
+}) => {
   const store = useStore();
+  const dispatch = useDispatch();
+
   return (
     <ReactModal
       // appElement={el}
@@ -12,7 +21,23 @@ const CreateBookModal = ({ onInputChange }) => {
       overlayClassName="create-book-modal-overlay"
     >
       <h3>Create New Book</h3>
-      <form>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+
+          if (formTitle && formAuthors && formPublishedDate) {
+            dispatch(
+              booksCreate(
+                formTitle,
+                formAuthors,
+                formPublishedDate,
+                formPublisher
+              )
+            );
+            dispatch(modalToggle());
+          }
+        }}
+      >
         <label>
           Title
           <input
@@ -22,7 +47,7 @@ const CreateBookModal = ({ onInputChange }) => {
             }}
             placeholder="Title"
             type="text"
-            // value={modalTitle}
+            value={formTitle}
           />
         </label>
         <label>
@@ -32,9 +57,9 @@ const CreateBookModal = ({ onInputChange }) => {
             onChange={(event) => {
               onInputChange(event);
             }}
-            placeholder="Title"
+            placeholder="Author(s)"
             type="text"
-            // value={modalTitle}
+            value={formAuthors}
           />
         </label>
         <label>
@@ -44,9 +69,9 @@ const CreateBookModal = ({ onInputChange }) => {
             onChange={(event) => {
               onInputChange(event);
             }}
-            placeholder="Title"
+            placeholder="Publisher"
             type="text"
-            // value={modalTitle}
+            value={formPublisher}
           />
         </label>
         <label>
@@ -56,9 +81,9 @@ const CreateBookModal = ({ onInputChange }) => {
             onChange={(event) => {
               onInputChange(event);
             }}
-            placeholder="Title"
+            placeholder="Published Date"
             type="text"
-            // value={modalTitle}
+            value={formPublishedDate}
           />
         </label>
         <button>Submit</button>

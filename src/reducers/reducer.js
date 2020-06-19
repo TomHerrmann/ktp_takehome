@@ -2,6 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   appLoaded: false,
+  books: [],
   modalOpened: false,
 };
 
@@ -17,13 +18,21 @@ const reducer = (state = initialState, action) => {
         appLoaded,
       };
     case types.BOOKS_CREATE:
-      return state;
-    case types.BOOKS_POPULATE:
-      const books = action.payload;
+      const { title, authors, publisher, publishedDate } = action.payload;
+      const booksCreated = state.books.slice();
+
+      booksCreated.push({ title, authors, publisher, publishedDate });
 
       return {
         ...state,
-        books,
+        books: booksCreated,
+      };
+    case types.BOOKS_POPULATE:
+      const booksPopulated = action.payload;
+
+      return {
+        ...state,
+        books: booksPopulated,
       };
     case types.FORM_SUBMIT:
       return state;

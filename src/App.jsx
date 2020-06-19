@@ -64,7 +64,13 @@ const App = ({ appLoaded, booksPopulate }) => {
 
   return (
     <main className="app">
-      <CreateBookModal onInputChange={onInputChange} />
+      <CreateBookModal
+        onInputChange={onInputChange}
+        formAuthors={formAuthors}
+        formPublisher={formPublisher}
+        formPublishedDate={formPublishedDate}
+        formTitle={formTitle}
+      />
       <header className="top-container">
         <h1>Books</h1>
         <CreateBookButton /> {/* add onClick functionality */}
