@@ -3,7 +3,11 @@ import ReactModal from 'react-modal';
 
 const CreateBookModal = () => {
   return (
-    <ReactModal isOpen={true} className="create-book-modal">
+    <ReactModal
+      isOpen={true}
+      className="create-book-modal-content"
+      overlayClassName="create-book-modal-overlay"
+    >
       <h3>Create New Book</h3>
       <form>
         <label>
