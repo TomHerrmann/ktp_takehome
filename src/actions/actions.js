@@ -5,6 +5,11 @@ export const apiError = (error) => ({
   payload: error,
 });
 
+export const appLoaded = (appLoaded) => ({
+  type: types.APP_LOADED,
+  payload: appLoaded,
+});
+
 export const booksCreate = () => ({
   type: types.BOOKS_CREATE,
   payload: null,
@@ -18,6 +23,11 @@ export const booksPopulate = (books) => ({
 export const formSubmit = (formInput) => ({
   type: types.FORM_SUBMIT,
   payload: formInput,
+});
+
+export const modalToggle = () => ({
+  type: types.MODAL_TOGGLE,
+  payload: null,
 });
 
 export const searchSubmit = (searchQuery) => ({
