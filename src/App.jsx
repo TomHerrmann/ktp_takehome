@@ -5,7 +5,7 @@ import * as actions from './actions/action';
 import * as types from './constants/actionTypes';
 import store from './store';
 
-import AddBookButton from './components/AddBookButton.jsx';
+import CreateBookButton from './components/CreateBookButton.jsx';
 import BookCard from './components/BookCard.jsx';
 import LoadingSpinner from './components/LoadingSpinner.jsx';
 import Search from './components/Search.jsx';
@@ -17,8 +17,9 @@ const App = ({ booksPopulate }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [formInput, setFormQuery] = useState({
     title: '',
-    author: '',
+    authors: [],
     publisher: '',
+    publishedDate: '',
   });
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -40,17 +41,22 @@ const App = ({ booksPopulate }) => {
 
   const store = useStore();
   console.log('store --> ', store.getState());
+  console.log('books arr from store --> ', store.getState().books);
 
   return (
     <main className="app">
       <header className="top-container">
         <h1>Books</h1>
-        <AddBookButton /> {/* add onClick functionality */}
+        <CreateBookButton /> {/* add onClick functionality */}
       </header>
       <section className="body-container">
         <Search /> {/* add onSearch functionality & searchQuery state */}
         <section className="books-container">
-          {/* book cards logic / add book object - {title, author, publisher} to state*/}
+          {!isLoading ? (
+            store.getState().books.map((book) => <BookCard book={book} />)
+          ) : (
+            <LoadingSpinner />
+          )}
         </section>
       </section>
     </main>
