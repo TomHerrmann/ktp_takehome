@@ -14,7 +14,7 @@ import createBookArray from './utils/createBookArray';
 
 const App = ({ appLoaded, booksPopulate }) => {
   const store = useStore();
-  const { books, isLoading, searchedBooks, showSaerched } = store.getState();
+  const { displayBooks, isLoading } = store.getState();
 
   const [formAuthors, setFormAuthors] = useState([]);
   const [formPublisher, setFormPublisher] = useState('');
@@ -77,11 +77,11 @@ const App = ({ appLoaded, booksPopulate }) => {
         <CreateBookButton /> {/* add onClick functionality */}
       </header>
       <section className="body-container">
-        <Search onInputChange={onInputChange} />
+        <Search onInputChange={onInputChange} searchQuery={searchQuery} />
         {/* add onSearch functionality & searchQuery state */}
         <section className="books-container">
           {isLoading ? (
-            books.map((book) => <BookCard book={book} />)
+            displayBooks.map((book) => <BookCard book={book} />)
           ) : (
             <LoadingSpinner />
           )}

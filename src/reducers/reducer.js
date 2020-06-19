@@ -1,8 +1,9 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-  appLoaded: false,
-  books: [],
+  allBooks: [],
+  displayBooks: [],
+  isLoading: false,
   modalOpened: false,
 };
 
@@ -11,11 +12,11 @@ const reducer = (state = initialState, action) => {
     case types.API_ERROR:
       return state;
     case types.APP_LOADED:
-      const appLoaded = action.payload;
+      const isLoading = action.payload;
 
       return {
         ...state,
-        appLoaded,
+        isLoading,
       };
     case types.BOOKS_CREATE:
       const { title, authors, publisher, publishedDate } = action.payload;
@@ -25,14 +26,16 @@ const reducer = (state = initialState, action) => {
 
       return {
         ...state,
-        books: booksCreated,
+        allBooks: booksCreated,
+        displayBooks: booksCreated,
       };
     case types.BOOKS_POPULATE:
       const booksPopulated = action.payload;
 
       return {
         ...state,
-        books: booksPopulated,
+        allBooks: booksPopulated,
+        displayBooks: booksPopulated,
       };
     case types.FORM_SUBMIT:
       return state;
@@ -44,7 +47,12 @@ const reducer = (state = initialState, action) => {
         modalOpened,
       };
     case types.SEARCH_SUBMIT:
-      return state;
+      const searchedBooks = action.payload;
+
+      return {
+        ...state,
+        displayBooks: searchedBooks,
+      };
     default:
       return state;
   }
