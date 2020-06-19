@@ -5,8 +5,9 @@ import * as actions from './actions/action';
 import * as types from './constants/actionTypes';
 import store from './store';
 
-import CreateBookButton from './components/CreateBookButton.jsx';
 import BookCard from './components/BookCard.jsx';
+import CreateBookButton from './components/CreateBookButton.jsx';
+import CreateBookModal from './components/CreateBookModal.jsx';
 import LoadingSpinner from './components/LoadingSpinner.jsx';
 import Search from './components/Search.jsx';
 
@@ -45,6 +46,7 @@ const App = ({ booksPopulate }) => {
 
   return (
     <main className="app">
+      <CreateBookModal />
       <header className="top-container">
         <h1>Books</h1>
         <CreateBookButton /> {/* add onClick functionality */}

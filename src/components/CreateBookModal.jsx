@@ -1,9 +1,12 @@
+import React from 'react';
 import ReactModal from 'react-modal';
 
-const AddBookModal = () => {
+const CreateBookModal = () => {
   return (
-    <ReactModal>
+    <ReactModal isOpen={true}>
       <h3>Create New Book</h3>
     </ReactModal>
   );
 };
+
+export default CreateBookModal;
