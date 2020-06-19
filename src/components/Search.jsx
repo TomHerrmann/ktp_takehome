@@ -6,11 +6,12 @@ const Search = ({ onSearch, searchQuery }) => {
       <form onSubmit={(event) => event.preventDefault()}>
         <label>
           <input
-            type="text"
-            placeholder="Search"
+            name="searchQuery"
             onChange={(event) => {
               onSearch(event);
             }}
+            placeholder="Search"
+            type="text"
             value={searchQuery}
           />
         </label>
