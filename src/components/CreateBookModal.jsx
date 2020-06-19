@@ -24,8 +24,6 @@ const CreateBookModal = ({
       <form
         onSubmit={(event) => {
           event.preventDefault();
-
-          if (formTitle && formAuthors && formPublishedDate) {
             dispatch(
               booksCreate(
                 formTitle,
