@@ -5,9 +5,9 @@ export const apiError = (error) => ({
   payload: error,
 });
 
-export const appLoaded = (appLoaded) => ({
+export const appLoaded = (isLoading) => ({
   type: types.APP_LOADED,
-  payload: appLoaded,
+  payload: isLoading,
 });
 
 export const booksCreate = (
@@ -35,7 +35,7 @@ export const modalToggle = () => ({
   payload: null,
 });
 
-export const searchSubmit = (searchQuery) => ({
+export const searchSubmit = (searchedBooks) => ({
   type: types.SEARCH_SUBMIT,
-  payload: searchQuery,
+  payload: searchedBooks,
 });
