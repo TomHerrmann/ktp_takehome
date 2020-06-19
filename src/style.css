@@ -3,20 +3,37 @@
   --ktp-background-secondary: #f8f8f8;
   --ktp-color: #4682b4;
   --ktp-color-secondary: #101010;
-  --ktp-border: #707070;
-  --ktp-shadow: #707070;
+  --ktp-border: #777676;
+  --ktp-shadow: #777777;
 }
 
 body {
   background-color: var(--ktp-background);
   color: var(--ktp-color);
   font-family: sans-serif;
+
+  height: 100%;
+  width: 100%;
+  margin: unset;
 }
 
 .app {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+input {
+  all: unset;
+
+  color: var(--ktp-border);
+
+  border: none;
+  border-bottom: 1px solid var(--ktp-border);
+
+  outline: none;
+
+  cursor: text;
 }
 
 button {
@@ -33,9 +50,14 @@ button {
 button:hover {
   background-color: var(--ktp-background-secondary);
   color: var(--ktp-color);
+  padding: -1px;
+  border: 1px solid var(--ktp-color);
+  cursor: pointer;
 }
 
 .create-book-modal-overlay {
+  display: flex;
+  justify-content: center;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -47,19 +69,18 @@ button:hover {
 .create-book-modal-content {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: fit-content;
   width: 60%;
-  max-width: 500px;
+  max-width: 380px;
   position: absolute;
   top: 10%;
   bottom: 20%;
-  bottom: 40px;
-  border: 1px solid rgb(204, 204, 204);
-  background: rgb(255, 255, 255);
-  overflow: auto;
+  border: 0.5px solid var(--ktp-border);
   border-radius: 4px;
+  box-shadow: 1px 2px 2px var(--ktp-shadow);
+  background: var(--ktp-background-secondary);
   outline: none;
-  padding: 20px;
+  padding: 5px 20px 20px;
 }
 
 .create-book-modal-content form {
@@ -70,19 +91,23 @@ button:hover {
 .create-book-modal-content label {
   display: inline-flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .create-book-modal-content input {
   display: inline-flex;
   flex-direction: column;
   margin-top: 7px;
+  padding: 6px;
   border: none;
   border-bottom: 1px solid var(--ktp-border);
+  background-color: var(--ktp-background-secondary);
 }
 
 .create-book-modal-content button {
   display: inline-block;
+  margin: 40px 5% 0 5%;
+  width: 90%;
 }
 
 .top-container {
@@ -92,7 +117,7 @@ button:hover {
 }
 
 .top-container h1 {
-  margin: 2px;
+  margin: 7px;
   font-size: 30px;
   color: var(--ktp-color-secondary);
 }
@@ -107,41 +132,31 @@ button:hover {
   align-items: flex-start;
 
   width: 100%;
+  margin-left: 15px;
 }
 
 .search-container {
   width: 300px;
   height: 32px;
 
-  margin: 15px;
+  margin: 15px 0;
 }
 
 .search-container input {
-  all: unset;
-
   height: 30px;
   width: 100%;
-
-  color: var(--ktp-border);
 
   padding-left: 20px;
   margin-top: -10px;
   margin-bottom: 7px;
-
-  border: none;
-  border-bottom: 1px solid var(--ktp-border);
-
-  outline: none;
 }
 
 .books-container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
 
-  max-width: 1000px;
-
-  margin-left: 30px;
+  width: 95%;
 }
 
 .book-card {
@@ -150,8 +165,8 @@ button:hover {
 
   width: 450px;
   height: 200px;
-  margin: 10px;
-  p2ding: 3px;
+  margin: 15px;
+  padding: 3px;
 
   background-color: var(--ktp-background-secondary);
 
