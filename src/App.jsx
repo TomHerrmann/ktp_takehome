@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useStore } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actions from './actions/action';
-import * as types from './constants/actionTypes';
-import store from './store';
+import * as actions from './actions/actions';
 
 import BookCard from './components/BookCard.jsx';
 import CreateBookButton from './components/CreateBookButton.jsx';
@@ -14,14 +12,13 @@ import Search from './components/Search.jsx';
 import * as enums from './utils/enums';
 import createBookArray from './utils/createBookArray';
 
-const App = ({ booksPopulate }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [formInput, setFormQuery] = useState({
-    title: '',
-    authors: [],
-    publisher: '',
-    publishedDate: '',
-  });
+const App = ({ appLoaded, booksPopulate }) => {
+  const store = useStore();
+
+  const [formAuthors, setFormAuthors] = useState([]);
+  const [formPublisher, setFormPublisher] = useState('');
+  const [formPublishedDate, setFormPublishedDate] = useState('');
+  const [formTitle, setFormTitle] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -30,7 +27,7 @@ const App = ({ booksPopulate }) => {
       const books = await booksPromise.json();
 
       booksPopulate(createBookArray(books.items));
-      setIsLoading(false);
+      appLoaded(true);
     };
 
     try {
@@ -40,21 +37,43 @@ const App = ({ booksPopulate }) => {
     }
   }, []);
 
-  const store = useStore();
-  console.log('store --> ', store.getState());
-  console.log('books arr from store --> ', store.getState().books);
+  const onInputChange = (event) => {
+    const str = event.target.value;
+    const field = event.target.name;
+
+    switch (field) {
+      case 'formAuthors':
+        setFormAuthors(str);
+        return;
+      case 'formPublishedDate':
+        setFormPublishedDate(str);
+        return;
+      case 'formPublisher':
+        setFormPublisher(str);
+        return;
+      case 'formTitle':
+        setFormTitle(str);
+        return;
+      case 'searchQuery':
+        setSearchQuery(str);
+        return;
+      default:
+        return;
+    }
+  };
 
   return (
     <main className="app">
-      <CreateBookModal />
+      <CreateBookModal onInputChange={onInputChange} />
       <header className="top-container">
         <h1>Books</h1>
         <CreateBookButton /> {/* add onClick functionality */}
       </header>
       <section className="body-container">
-        <Search /> {/* add onSearch functionality & searchQuery state */}
+        <Search onInputChange={onInputChange} />
+        {/* add onSearch functionality & searchQuery state */}
         <section className="books-container">
-          {!isLoading ? (
+          {store.getState().appLoaded ? (
             store.getState().books.map((book) => <BookCard book={book} />)
           ) : (
             <LoadingSpinner />
