@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import { connect } from 'react-redux';
+import { connect, useStore } from 'react-redux';
 
-const CreateBookModal = ({ modalOpened, onInputChange }) => {
+const CreateBookModal = ({ onInputChange }) => {
+  const store = useStore();
   return (
     <ReactModal
       // appElement={el}
       className="create-book-modal-content"
-      isOpen={modalOpened}
+      isOpen={store.getState().modalOpened}
       overlayClassName="create-book-modal-overlay"
     >
       <h3>Create New Book</h3>
@@ -66,8 +67,4 @@ const CreateBookModal = ({ modalOpened, onInputChange }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  modalOpened: state.modalOpened,
-});
-
-export default connect(mapStateToProps)(CreateBookModal);
+export default CreateBookModal;
