@@ -19,6 +19,72 @@ body {
   align-items: center;
 }
 
+button {
+  border: none;
+  background-color: var(--ktp-color);
+  color: var(--ktp-background-secondary);
+  padding: 7.5px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: var(--ktp-background-secondary);
+  color: var(--ktp-color);
+}
+
+.create-book-modal-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.create-book-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 60%;
+  max-width: 500px;
+  position: absolute;
+  top: 10%;
+  bottom: 20%;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
+
+.create-book-modal-content form {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.create-book-modal-content label {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.create-book-modal-content input {
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 7px;
+  border: none;
+  border-bottom: 1px solid var(--ktp-border);
+}
+
+.create-book-modal-content button {
+  display: inline-block;
+}
+
 .top-container {
   display: flex;
   justify-content: space-between;
@@ -31,21 +97,8 @@ body {
   color: var(--ktp-color-secondary);
 }
 
-.add-book-button-container button {
-  border: none;
-  background-color: var(--ktp-color);
-  color: var(--ktp-background-secondary);
-  padding: 7.5px 16px;
+.create-book-button-container button {
   margin: 7px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 12px;
-  transition-duration: 0.4s;
-}
-
-.add-book-button-container button:hover {
-  background-color: var(--ktp-background-secondary);
-  color: var(--ktp-color);
 }
 
 .body-container {
@@ -73,7 +126,7 @@ body {
 
   padding-left: 20px;
   margin-top: -10px;
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 
   border: none;
   border-bottom: 1px solid var(--ktp-border);
@@ -87,6 +140,8 @@ body {
   flex-wrap: wrap;
 
   max-width: 1000px;
+
+  margin-left: 30px;
 }
 
 .book-card {
@@ -96,7 +151,7 @@ body {
   width: 450px;
   height: 200px;
   margin: 10px;
-  padding: 3px;
+  p2ding: 3px;
 
   background-color: var(--ktp-background-secondary);
 
