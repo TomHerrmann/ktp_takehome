@@ -8,6 +8,7 @@ const CreateBookButton = () => {
   return (
     <section className="create-book-button-container">
       <button
+        className="create-book-button"
         onClick={(event) => {
           event.preventDefault();
           dispatch(modalToggle());

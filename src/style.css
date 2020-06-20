@@ -47,6 +47,14 @@ button {
   transition-duration: 0.4s;
 }
 
+button:focus {
+  background-color: var(--ktp-background-secondary);
+  color: var(--ktp-color);
+  padding: -1px;
+  border: 1px solid var(--ktp-color);
+  cursor: pointer;
+}
+
 button:hover {
   background-color: var(--ktp-background-secondary);
   color: var(--ktp-color);
@@ -69,10 +77,10 @@ button:hover {
 .create-book-modal-content {
   display: flex;
   flex-direction: column;
+  position: relative;
   height: fit-content;
   width: 60%;
   max-width: 380px;
-  position: absolute;
   top: 10%;
   bottom: 20%;
   border: 0.5px solid var(--ktp-border);
@@ -81,6 +89,30 @@ button:hover {
   background: var(--ktp-background-secondary);
   outline: none;
   padding: 5px 20px 20px;
+}
+
+.close-button {
+  all: unset;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: fit-content;
+  margin: 10px 20px;
+
+  color: var(--ktp-border);
+  cursor: pointer;
+}
+
+.close-button:focus {
+  cursor: pointer;
+  color: var(--ktp-border);
+  width: fit-content;
+}
+
+.close-button:hover {
+  cursor: pointer;
+  color: var(--ktp-border);
+  width: fit-content;
 }
 
 .create-book-modal-content form {
@@ -104,7 +136,7 @@ button:hover {
   background-color: var(--ktp-background-secondary);
 }
 
-.create-book-modal-content button {
+.submit-button {
   display: inline-block;
   margin: 40px 5% 0 5%;
   width: 90%;
@@ -122,7 +154,7 @@ button:hover {
   color: var(--ktp-color-secondary);
 }
 
-.create-book-button-container button {
+.create-book-button {
   margin: 7px;
 }
 
