@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import ReactModal from 'react-modal';
 import { useStore, useDispatch } from 'react-redux';
 import { booksCreate, modalToggle } from '../actions/actions';
@@ -11,6 +11,9 @@ const CreateBookModal = () => {
   const [formPublisher, setFormPublisher] = useState('');
   const [formPublishedDate, setFormPublishedDate] = useState('');
   const [formTitle, setFormTitle] = useState('');
+
+  const formFields = ['Title', 'Author(s)', 'Publisher', 'Published Date'];
+  const formState = [formTitle, formAuthors, formPublisher, formPublishedDate];
 
   const onFormChange = (event) => {
     const str = event.target.value;
@@ -34,8 +37,19 @@ const CreateBookModal = () => {
     }
   };
 
-  const formFields = ['Title', 'Author(s)', 'Publisher', 'Published Date'];
-  const formState = [formTitle, formAuthors, formPublisher, formPublishedDate];
+  const onFormSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      dispatch(booksCreate(...formState));
+      dispatch(modalToggle());
+      setFormAuthors('');
+      setFormPublisher('');
+      setFormPublishedDate('');
+      setFormTitle('');
+    },
+    [...formState]
+  );
 
   return (
     <ReactModal
@@ -45,18 +59,7 @@ const CreateBookModal = () => {
       overlayClassName="create-book-modal-overlay"
     >
       <h3>Create New Book</h3>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-
-          dispatch(booksCreate(...formState));
-          dispatch(modalToggle());
-          setFormAuthors('');
-          setFormPublisher('');
-          setFormPublishedDate('');
-          setFormTitle('');
-        }}
-      >
+      <form onSubmit={onFormSubmit}>
         {formFields.map((field, index) => {
           return (
             <label>
