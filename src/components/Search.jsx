@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useStore, useDispatch } from 'react-redux';
 import search from '../utils/searchBooks';
 import { appLoaded, searchSubmit } from '../actions/actions';
@@ -10,20 +10,23 @@ const Search = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
 
+  const onSearchSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      dispatch(appLoaded(false));
+      dispatch(searchSubmit(search(searchQuery, allBooks)));
+      setSearchQuery('');
+      setTimeout(() => {
+        dispatch(appLoaded(true));
+      }, 250);
+    },
+    [searchQuery]
+  );
+
   return (
     <section className="search-container">
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-
-          dispatch(appLoaded(false));
-          dispatch(searchSubmit(search(searchQuery, allBooks)));
-          setSearchQuery('');
-          setTimeout(() => {
-            dispatch(appLoaded(true));
-          }, 250);
-        }}
-      >
+      <form onSubmit={onSearchSubmit}>
         <label>
           <input
             name="searchQuery"

@@ -43,7 +43,9 @@ const App = ({ appLoaded, booksPopulate }) => {
         <Search />
         <section className="books-container">
           {isLoading ? (
-            displayBooks.map((book) => <BookCard book={book} />)
+            displayBooks.map((book, index) => (
+              <BookCard book={book} key={`${index}` + Date.now()} />
+            ))
           ) : (
             <LoadingSpinner />
           )}
