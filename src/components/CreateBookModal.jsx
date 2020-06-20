@@ -17,22 +17,25 @@ const CreateBookModal = () => {
     const field = event.target.name;
 
     switch (field) {
-      case 'formAuthors':
+      case 'Author(s)':
         setFormAuthors(str);
         return;
-      case 'formPublishedDate':
+      case 'Published Date':
         setFormPublishedDate(str);
         return;
-      case 'formPublisher':
+      case 'Publisher':
         setFormPublisher(str);
         return;
-      case 'formTitle':
+      case 'Title':
         setFormTitle(str);
         return;
       default:
         return;
     }
   };
+
+  const formFields = ['Title', 'Author(s)', 'Publisher', 'Published Date'];
+  const formState = [formTitle, formAuthors, formPublisher, formPublishedDate];
 
   return (
     <ReactModal
@@ -46,14 +49,7 @@ const CreateBookModal = () => {
         onSubmit={(event) => {
           event.preventDefault();
 
-          dispatch(
-            booksCreate(
-              formTitle,
-              formAuthors,
-              formPublisher,
-              formPublishedDate
-            )
-          );
+          dispatch(booksCreate(...formState));
           dispatch(modalToggle());
           setFormAuthors('');
           setFormPublisher('');
@@ -61,54 +57,22 @@ const CreateBookModal = () => {
           setFormTitle('');
         }}
       >
-        <label>
-          Title
-          <input
-            name="formTitle"
-            onChange={(event) => {
-              onFormChange(event);
-            }}
-            placeholder="Title"
-            type="text"
-            value={formTitle}
-          />
-        </label>
-        <label>
-          Author(s)
-          <input
-            name="formAuthors"
-            onChange={(event) => {
-              onFormChange(event);
-            }}
-            placeholder="Author(s)"
-            type="text"
-            value={formAuthors}
-          />
-        </label>
-        <label>
-          Publisher
-          <input
-            name="formPublisher"
-            onChange={(event) => {
-              onFormChange(event);
-            }}
-            placeholder="Publisher"
-            type="text"
-            value={formPublisher}
-          />
-        </label>
-        <label>
-          Published Date
-          <input
-            name="formPublishedDate"
-            onChange={(event) => {
-              onFormChange(event);
-            }}
-            placeholder="Published Date"
-            type="text"
-            value={formPublishedDate}
-          />
-        </label>
+        {formFields.map((field, index) => {
+          return (
+            <label>
+              {`${field}`}
+              <input
+                name={`${field}`}
+                onChange={(event) => {
+                  onFormChange(event);
+                }}
+                placeholder={`${field}`}
+                type="text"
+                value={formState[index]}
+              />
+            </label>
+          );
+        })}
         <button>Submit</button>
       </form>
     </ReactModal>
