@@ -86,6 +86,7 @@ const CreateBookModal = () => {
                 onFocus={(e) => (e.target.placeholder = '')}
                 onBlur={(e) => (e.target.placeholder = `${field}`)}
                 placeholder={`${field}`}
+                required
                 type="text"
                 value={formState[index]}
               />
