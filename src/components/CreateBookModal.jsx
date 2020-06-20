@@ -3,6 +3,8 @@ import ReactModal from 'react-modal';
 import { useStore, useDispatch } from 'react-redux';
 import { booksCreate, modalToggle } from '../actions/actions';
 
+ReactModal.setAppElement('#root');
+
 const CreateBookModal = () => {
   const store = useStore();
   const dispatch = useDispatch();
@@ -59,10 +61,13 @@ const CreateBookModal = () => {
       overlayClassName="create-book-modal-overlay"
     >
       <h3>Create New Book</h3>
+      <button className="close-button" onClick={() => dispatch(modalToggle())}>
+        X
+      </button>
       <form onSubmit={onFormSubmit}>
         {formFields.map((field, index) => {
           return (
-            <label>
+            <label key={`${index}` + Date.now()}>
               {`${field}`}
               <input
                 name={`${field}`}
@@ -76,7 +81,7 @@ const CreateBookModal = () => {
             </label>
           );
         })}
-        <button>Submit</button>
+        <button className="submit-button">Submit</button>
       </form>
     </ReactModal>
   );
