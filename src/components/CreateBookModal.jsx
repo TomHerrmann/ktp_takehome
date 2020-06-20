@@ -61,19 +61,30 @@ const CreateBookModal = () => {
       overlayClassName="create-book-modal-overlay"
     >
       <h3>Create New Book</h3>
-      <button className="close-button" onClick={() => dispatch(modalToggle())}>
+      <button
+        className="close-button"
+        onClick={() => {
+          dispatch(modalToggle());
+          setFormAuthors('');
+          setFormPublisher('');
+          setFormPublishedDate('');
+          setFormTitle('');
+        }}
+      >
         X
       </button>
       <form onSubmit={onFormSubmit}>
         {formFields.map((field, index) => {
           return (
-            <label key={`${index}` + Date.now()}>
+            <label key={`${index}${field}`}>
               {`${field}`}
               <input
                 name={`${field}`}
                 onChange={(event) => {
                   onFormChange(event);
                 }}
+                onFocus={(e) => (e.target.placeholder = '')}
+                onBlur={(e) => (e.target.placeholder = `${field}`)}
                 placeholder={`${field}`}
                 type="text"
                 value={formState[index]}

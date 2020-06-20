@@ -36,6 +36,11 @@ input {
   cursor: text;
 }
 
+input:focus {
+  color: var(--ktp-color);
+  border-bottom: 1px solid var(--ktp-color);
+}
+
 button {
   border: none;
   background-color: var(--ktp-color);
@@ -131,9 +136,7 @@ button:hover {
   flex-direction: column;
   margin-top: 7px;
   padding: 6px;
-  border: none;
-  border-bottom: 1px solid var(--ktp-border);
-  background-color: var(--ktp-background-secondary);
+  /* background-color: var(--ktp-background-secondary); */
 }
 
 .submit-button {

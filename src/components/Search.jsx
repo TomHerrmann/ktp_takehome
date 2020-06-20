@@ -34,6 +34,8 @@ const Search = () => {
               const query = event.target.value;
               setSearchQuery(query);
             }}
+            onFocus={(e) => (e.target.placeholder = '')}
+            onBlur={(e) => (e.target.placeholder = 'Search')}
             placeholder="Search"
             type="text"
             value={searchQuery}
