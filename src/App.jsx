@@ -37,11 +37,10 @@ const App = ({ appLoaded, booksPopulate }) => {
       <CreateBookModal />
       <header className="top-container">
         <h1>Books</h1>
-        <CreateBookButton /> {/* add onClick functionality */}
+        <CreateBookButton />
       </header>
       <section className="body-container">
         <Search />
-        {/* add onSearch functionality & searchQuery state */}
         <section className="books-container">
           {isLoading ? (
             displayBooks.map((book) => <BookCard book={book} />)
