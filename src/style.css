@@ -149,6 +149,7 @@ button:hover {
   padding-left: 20px;
   margin-top: -10px;
   margin-bottom: 7px;
+  margin-left: 15px;
 }
 
 .books-container {
@@ -173,6 +174,10 @@ button:hover {
   box-shadow: 2px 4px 5px var(--ktp-shadow);
   border-radius: 5px;
   border-left: 5px solid orange;
+}
+
+.book-card h2 {
+  margin-left: 5px;
 }
 
 .book-card ul {

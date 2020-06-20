@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect, useStore } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from './actions/actions';
@@ -16,12 +16,6 @@ const App = ({ appLoaded, booksPopulate }) => {
   const store = useStore();
   const { displayBooks, isLoading } = store.getState();
 
-  const [formAuthors, setFormAuthors] = useState([]);
-  const [formPublisher, setFormPublisher] = useState('');
-  const [formPublishedDate, setFormPublishedDate] = useState('');
-  const [formTitle, setFormTitle] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
-
   useEffect(() => {
     const fetchAllBooks = async () => {
       const booksPromise = await fetch(enums.apiURL);
@@ -38,46 +32,15 @@ const App = ({ appLoaded, booksPopulate }) => {
     }
   }, []);
 
-  const onInputChange = (event) => {
-    const str = event.target.value;
-    const field = event.target.name;
-
-    switch (field) {
-      case 'formAuthors':
-        setFormAuthors(str);
-        return;
-      case 'formPublishedDate':
-        setFormPublishedDate(str);
-        return;
-      case 'formPublisher':
-        setFormPublisher(str);
-        return;
-      case 'formTitle':
-        setFormTitle(str);
-        return;
-      case 'searchQuery':
-        setSearchQuery(str);
-        return;
-      default:
-        return;
-    }
-  };
-
   return (
     <main className="app">
-      <CreateBookModal
-        onInputChange={onInputChange}
-        formAuthors={formAuthors}
-        formPublisher={formPublisher}
-        formPublishedDate={formPublishedDate}
-        formTitle={formTitle}
-      />
+      <CreateBookModal />
       <header className="top-container">
         <h1>Books</h1>
         <CreateBookButton /> {/* add onClick functionality */}
       </header>
       <section className="body-container">
-        <Search onInputChange={onInputChange} searchQuery={searchQuery} />
+        <Search />
         {/* add onSearch functionality & searchQuery state */}
         <section className="books-container">
           {isLoading ? (

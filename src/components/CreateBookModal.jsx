@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import { useStore, useDispatch } from 'react-redux';
 import { booksCreate, modalToggle } from '../actions/actions';
 
-const CreateBookModal = ({
-  formAuthors,
-  formPublishedDate,
-  formPublisher,
-  formTitle,
-  onInputChange,
-}) => {
+const CreateBookModal = () => {
   const store = useStore();
   const dispatch = useDispatch();
+
+  const [formAuthors, setFormAuthors] = useState([]);
+  const [formPublisher, setFormPublisher] = useState('');
+  const [formPublishedDate, setFormPublishedDate] = useState('');
+  const [formTitle, setFormTitle] = useState('');
+
+  const onFormChange = (event) => {
+    const str = event.target.value;
+    const field = event.target.name;
+
+    switch (field) {
+      case 'formAuthors':
+        setFormAuthors(str);
+        return;
+      case 'formPublishedDate':
+        setFormPublishedDate(str);
+        return;
+      case 'formPublisher':
+        setFormPublisher(str);
+        return;
+      case 'formTitle':
+        setFormTitle(str);
+        return;
+      default:
+        return;
+    }
+  };
 
   return (
     <ReactModal
@@ -25,12 +46,19 @@ const CreateBookModal = ({
         onSubmit={(event) => {
           event.preventDefault();
 
-          const authArr = formAuthors.split(', ');
-
           dispatch(
-            booksCreate(formTitle, authArr, formPublisher, formPublishedDate)
+            booksCreate(
+              formTitle,
+              formAuthors,
+              formPublisher,
+              formPublishedDate
+            )
           );
           dispatch(modalToggle());
+          setFormAuthors('');
+          setFormPublisher('');
+          setFormPublishedDate('');
+          setFormTitle('');
         }}
       >
         <label>
@@ -38,7 +66,7 @@ const CreateBookModal = ({
           <input
             name="formTitle"
             onChange={(event) => {
-              onInputChange(event);
+              onFormChange(event);
             }}
             placeholder="Title"
             type="text"
@@ -50,7 +78,7 @@ const CreateBookModal = ({
           <input
             name="formAuthors"
             onChange={(event) => {
-              onInputChange(event);
+              onFormChange(event);
             }}
             placeholder="Author(s)"
             type="text"
@@ -62,7 +90,7 @@ const CreateBookModal = ({
           <input
             name="formPublisher"
             onChange={(event) => {
-              onInputChange(event);
+              onFormChange(event);
             }}
             placeholder="Publisher"
             type="text"
@@ -74,7 +102,7 @@ const CreateBookModal = ({
           <input
             name="formPublishedDate"
             onChange={(event) => {
-              onInputChange(event);
+              onFormChange(event);
             }}
             placeholder="Published Date"
             type="text"

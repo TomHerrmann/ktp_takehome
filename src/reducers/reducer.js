@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
       };
     case types.BOOKS_CREATE:
       const { title, authors, publisher, publishedDate } = action.payload;
-      const booksCreated = state.books.slice();
+      const booksCreated = state.allBooks.slice();
 
       booksCreated.push({ title, authors, publisher, publishedDate });
 
