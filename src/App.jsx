@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from './actions/actions';
 
 import BookCard from './components/BookCard.jsx';
-import CreateBookButton from './components/CreateBookButton.jsx';
+import ButtonPrimary from './components/ButtonPrimary.jsx';
 import CreateBookModal from './components/CreateBookModal.jsx';
 import LoadingSpinner from './components/LoadingSpinner.jsx';
 import Search from './components/Search.jsx';
@@ -12,9 +12,9 @@ import Search from './components/Search.jsx';
 import * as enums from './utils/enums';
 import createBookArray from './utils/createBookArray';
 
-const App = ({ appLoaded, booksPopulate }) => {
+const App = ({ appLoaded, booksDisplayAll, booksPopulate, modalToggle }) => {
   const store = useStore();
-  const { displayBooks, isLoading } = store.getState();
+  const { displayBooks, isLoading, searchDisplay } = store.getState();
 
   useEffect(() => {
     const fetchAllBooks = async () => {
@@ -32,15 +32,30 @@ const App = ({ appLoaded, booksPopulate }) => {
     }
   }, []);
 
+  const onCreateBookClick = (event) => {
+    event.preventDefault();
+    modalToggle();
+  };
+
+  const onDisplayAllClick = (event) => {
+    event.preventDefault();
+    booksDisplayAll();
+  };
+
   return (
     <main className="app">
       <CreateBookModal />
       <header className="top-container">
         <h1>Books</h1>
-        <CreateBookButton />
+        <ButtonPrimary onClick={onCreateBookClick} text={'Create New Book'} />
       </header>
       <section className="body-container">
-        <Search />
+        <section className="search-container">
+          <Search />
+          {searchDisplay ? (
+            <ButtonPrimary onClick={onDisplayAllClick} text="View All Books" />
+          ) : null}
+        </section>
         <section className="books-container">
           {isLoading ? (
             displayBooks.map((book, index) => (

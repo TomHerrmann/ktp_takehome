@@ -5,6 +5,7 @@ const initialState = {
   displayBooks: [],
   isLoading: false,
   modalOpened: false,
+  searchDisplay: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -29,6 +30,13 @@ const reducer = (state = initialState, action) => {
         allBooks: booksCreated,
         displayBooks: booksCreated,
       };
+    case types.BOOKS_DISPLAY_ALL:
+      console.log('in reducer');
+      return {
+        ...state,
+        books: allBooks,
+        searchDisplay: false,
+      };
     case types.BOOKS_POPULATE:
       const booksPopulated = action.payload;
 
@@ -37,8 +45,6 @@ const reducer = (state = initialState, action) => {
         allBooks: booksPopulated,
         displayBooks: booksPopulated,
       };
-    case types.FORM_SUBMIT:
-      return state;
     case types.MODAL_TOGGLE:
       const modalOpened = !state.modalOpened;
 
@@ -52,6 +58,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         displayBooks: searchedBooks,
+        searchDisplay: true,
       };
     default:
       return state;

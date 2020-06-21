@@ -25,7 +25,7 @@ const Search = () => {
   );
 
   return (
-    <section className="search-container">
+    <section>
       <form onSubmit={onSearchSubmit}>
         <label>
           <input

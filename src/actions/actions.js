@@ -20,14 +20,14 @@ export const booksCreate = (
   payload: { title, authors, publisher, publishedDate },
 });
 
+export const booksDisplayAll = () => ({
+  type: types.BOOKS_DISPLAY_ALL,
+  payload: null,
+});
+
 export const booksPopulate = (books) => ({
   type: types.BOOKS_POPULATE,
   payload: books,
-});
-
-export const formSubmit = (formInput) => ({
-  type: types.FORM_SUBMIT,
-  payload: formInput,
 });
 
 export const modalToggle = () => ({
