@@ -70,7 +70,6 @@ button:hover {
 
 .primary-button {
   width: max-content;
-  margin: 7px;
 }
 
 .create-book-modal-overlay {
@@ -160,6 +159,10 @@ button:hover {
   margin: 7px;
   font-size: 30px;
   color: var(--ktp-color-secondary);
+}
+
+.top-container .primary-button {
+  margin: 7px;
 }
 
 .body-container {
