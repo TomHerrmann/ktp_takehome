@@ -31,11 +31,13 @@ const reducer = (state = initialState, action) => {
         displayBooks: booksCreated,
       };
     case types.BOOKS_DISPLAY_ALL:
-      console.log('in reducer');
+      const allBooks = state.allBooks.slice();
+
       return {
         ...state,
-        books: allBooks,
-        searchDisplay: false,
+        displayBooks: allBooks,
+        isLoading: false,
+        searchDisplay: true,
       };
     case types.BOOKS_POPULATE:
       const booksPopulated = action.payload;

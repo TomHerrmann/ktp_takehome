@@ -40,6 +40,9 @@ const App = ({ appLoaded, booksDisplayAll, booksPopulate, modalToggle }) => {
   const onDisplayAllClick = (event) => {
     event.preventDefault();
     booksDisplayAll();
+    setTimeout(() => {
+      appLoaded(true);
+    }, 250);
   };
 
   return (
