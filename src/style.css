@@ -236,6 +236,10 @@ button:hover {
   margin: 5px;
 }
 
+.no-results {
+  margin: 25px;
+}
+
 /* animated spinner source - https://loading.io/css/*/
 .loading-spinner {
   display: flex;

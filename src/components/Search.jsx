@@ -14,11 +14,11 @@ const Search = () => {
     (event) => {
       event.preventDefault();
 
-      dispatch(appLoading(false));
+      dispatch(appLoading(true));
       dispatch(searchSubmit(search(searchQuery, allBooks)));
       setSearchQuery('');
       setTimeout(() => {
-        dispatch(appLoading(true));
+        dispatch(appLoading(false));
       }, 250);
     },
     [searchQuery]

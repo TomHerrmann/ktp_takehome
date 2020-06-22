@@ -30,7 +30,6 @@ const App = ({
       if (booksPromise.status === 200) {
         const books = await booksPromise.json();
         booksPopulate(createBookArray(books.items));
-        appLoading(false);
       } else {
         apiError(booksPromise.status);
       }
@@ -51,7 +50,7 @@ const App = ({
     event.preventDefault();
     booksDisplayAll();
     setTimeout(() => {
-      appLoading(true);
+      appLoading(false);
     }, 250);
   };
 
@@ -73,10 +72,14 @@ const App = ({
         <section className="books-container">
           {isLoading ? (
             <LoadingSpinner />
-          ) : (
+          ) : displayBooks.length ? (
             displayBooks.map((book, index) => (
-              <BookCard book={book} key={`${index}` + Date.now()} />
+              <BookCard book={book} key={`book${index}`} />
             ))
+          ) : (
+            <section className="no-results">
+              <strong>Book Not Found</strong>
+            </section>
           )}
         </section>
       </section>

@@ -45,8 +45,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         displayBooks: allBooks,
-        isLoading: false,
-        searchDisplay: true,
+        isLoading: true,
+        searchDisplay: false,
       };
     case types.BOOKS_POPULATE:
       const booksPopulated = action.payload;
@@ -55,6 +55,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         allBooks: booksPopulated,
         displayBooks: booksPopulated,
+        isLoading: false,
       };
     case types.CREATE_MODAL_TOGGLE:
       const createModalOpened = !state.createModalOpened;
