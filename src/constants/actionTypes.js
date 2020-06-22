@@ -1,7 +1,7 @@
 export const API_ERROR = 'API_ERROR';
-export const APP_LOADED = 'APP_LOADED';
+export const APP_LOADING = 'APP_LOADING';
 export const BOOKS_CREATE = 'BOOKS_CREATE';
 export const BOOKS_DISPLAY_ALL = 'BOOKS_DISPLAY_ALL';
 export const BOOKS_POPULATE = 'BOOKS_POPULATE';
-export const MODAL_TOGGLE = 'MODAL_TOGGLE';
+export const CREATE_MODAL_TOGGLE = 'CREATE_MODAL_TOGGLE';
 export const SEARCH_SUBMIT = 'SEARCH_SUBMIT';

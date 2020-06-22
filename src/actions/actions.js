@@ -1,12 +1,12 @@
 import * as types from '../constants/actionTypes';
 
-export const apiError = (error) => ({
+export const apiError = (status) => ({
   type: types.API_ERROR,
-  payload: error,
+  payload: status,
 });
 
-export const appLoaded = (isLoading) => ({
-  type: types.APP_LOADED,
+export const appLoading = (isLoading) => ({
+  type: types.APP_LOADING,
   payload: isLoading,
 });
 
@@ -30,8 +30,8 @@ export const booksPopulate = (books) => ({
   payload: books,
 });
 
-export const modalToggle = () => ({
-  type: types.MODAL_TOGGLE,
+export const createModalToggle = () => ({
+  type: types.CREATE_MODAL_TOGGLE,
   payload: null,
 });
 

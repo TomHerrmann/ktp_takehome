@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useStore, useDispatch } from 'react-redux';
 import search from '../utils/searchBooks';
-import { appLoaded, searchSubmit } from '../actions/actions';
+import { appLoading, searchSubmit } from '../actions/actions';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -14,11 +14,11 @@ const Search = () => {
     (event) => {
       event.preventDefault();
 
-      dispatch(appLoaded(false));
+      dispatch(appLoading(false));
       dispatch(searchSubmit(search(searchQuery, allBooks)));
       setSearchQuery('');
       setTimeout(() => {
-        dispatch(appLoaded(true));
+        dispatch(appLoading(true));
       }, 250);
     },
     [searchQuery]

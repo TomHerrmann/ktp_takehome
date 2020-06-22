@@ -5,9 +5,11 @@ describe('reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({
       allBooks: [],
-      displayBooks: [],
-      isLoading: false,
       createModalOpened: false,
+      displayBooks: [],
+      errorStatus: null,
+      errorModalOpened: false,
+      isLoading: false,
       searchDisplay: false,
     });
   });

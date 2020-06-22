@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import ReactModal from 'react-modal';
 import { useStore, useDispatch } from 'react-redux';
-import { booksCreate, modalToggle } from '../actions/actions';
+import { booksCreate, createModalToggle } from '../actions/actions';
 
 ReactModal.setAppElement('#root');
 
@@ -45,7 +45,7 @@ const CreateBookModal = () => {
       event.preventDefault();
 
       dispatch(booksCreate(...formState));
-      dispatch(modalToggle());
+      dispatch(createModalToggle());
       setFormAuthors('');
       setFormPublisher('');
       setFormPublishedDate('');
@@ -65,7 +65,7 @@ const CreateBookModal = () => {
       <button
         className="close-button"
         onClick={() => {
-          dispatch(modalToggle());
+          dispatch(createModalToggle());
           setFormAuthors('');
           setFormPublisher('');
           setFormPublishedDate('');

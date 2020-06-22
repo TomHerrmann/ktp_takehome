@@ -3,13 +3,13 @@ import * as types from '../constants/actionTypes';
 import { formattedBooksArray } from '../utils/enums';
 
 describe('action', () => {
-  it('should create appLoaded action to update loading status', () => {
+  it('should create appLoading action to update loading status', () => {
     const isLoading = true;
     const expectedAction = {
-      type: types.APP_LOADED,
+      type: types.APP_LOADING,
       payload: isLoading,
     };
-    expect(actions.appLoaded(isLoading)).toEqual(expectedAction);
+    expect(actions.appLoading(isLoading)).toEqual(expectedAction);
   });
   it('should create booksCreate action to update the allBooks property in the store', () => {
     const { title, authors, publisher, publishedDate } = formattedBooksArray[0];
@@ -36,12 +36,12 @@ describe('action', () => {
     };
     expect(actions.booksPopulate(books)).toEqual(expectedAction);
   });
-  it('should create modalToggle action to display or hide modal', () => {
+  it('should create createModalToggle action to display or hide modal', () => {
     const expectedAction = {
-      type: types.MODAL_TOGGLE,
+      type: types.CREATE_MODAL_TOGGLE,
       payload: null,
     };
-    expect(actions.modalToggle()).toEqual(expectedAction);
+    expect(actions.createModalToggle()).toEqual(expectedAction);
   });
   it('should create searchSubmit action to set searchedBooks as the display books', () => {
     const searchedBooks = formattedBooksArray;

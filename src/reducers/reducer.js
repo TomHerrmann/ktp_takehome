@@ -2,17 +2,25 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   allBooks: [],
-  displayBooks: [],
-  isLoading: false,
   createModalOpened: false,
+  displayBooks: [],
+  errorStatus: null,
+  errorModalOpened: false,
+  isLoading: true,
   searchDisplay: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.API_ERROR:
-      return state;
-    case types.APP_LOADED:
+      const errorStatus = action.payload;
+      console.log('API_ERROR ->');
+      return {
+        ...state,
+        errorStatus,
+        errorModalOpened: true,
+      };
+    case types.APP_LOADING:
       const isLoading = action.payload;
 
       return {
@@ -47,7 +55,7 @@ const reducer = (state = initialState, action) => {
         allBooks: booksPopulated,
         displayBooks: booksPopulated,
       };
-    case types.MODAL_TOGGLE:
+    case types.CREATE_MODAL_TOGGLE:
       const createModalOpened = !state.createModalOpened;
 
       return {
