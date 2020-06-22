@@ -56,7 +56,6 @@ const CreateBookModal = () => {
 
   return (
     <ReactModal
-      // appElement={el}
       className="modal-content"
       isOpen={createModalOpened}
       overlayClassName="modal-overlay"

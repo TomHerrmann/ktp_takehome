@@ -14,11 +14,12 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.API_ERROR:
       const errorStatus = action.payload;
-      console.log('API_ERROR ->');
+
       return {
         ...state,
         errorStatus,
         errorModalOpened: true,
+        isLoading: false,
       };
     case types.APP_LOADING:
       const isLoading = action.payload;
