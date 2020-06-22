@@ -7,7 +7,7 @@ ReactModal.setAppElement('#root');
 
 const CreateBookModal = () => {
   const store = useStore();
-  const { modalOpened } = store.getState();
+  const { createModalOpened } = store.getState();
   const dispatch = useDispatch();
 
   const [formAuthors, setFormAuthors] = useState([]);
@@ -57,9 +57,9 @@ const CreateBookModal = () => {
   return (
     <ReactModal
       // appElement={el}
-      className="create-book-modal-content"
-      isOpen={modalOpened}
-      overlayClassName="create-book-modal-overlay"
+      className="modal-content"
+      isOpen={createModalOpened}
+      overlayClassName="modal-overlay"
     >
       <h3>Create New Book</h3>
       <button

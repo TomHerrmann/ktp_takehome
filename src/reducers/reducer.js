@@ -4,7 +4,7 @@ const initialState = {
   allBooks: [],
   displayBooks: [],
   isLoading: false,
-  modalOpened: false,
+  createModalOpened: false,
   searchDisplay: false,
 };
 
@@ -48,11 +48,11 @@ const reducer = (state = initialState, action) => {
         displayBooks: booksPopulated,
       };
     case types.MODAL_TOGGLE:
-      const modalOpened = !state.modalOpened;
+      const createModalOpened = !state.createModalOpened;
 
       return {
         ...state,
-        modalOpened,
+        createModalOpened,
       };
     case types.SEARCH_SUBMIT:
       const searchedBooks = action.payload;
