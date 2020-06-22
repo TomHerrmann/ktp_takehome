@@ -1,8 +1,8 @@
 # Kaplan Coding Assignment - Book List
 
-[Deployaed App](https://ktp-takehome.herokuapp.com/git)
-
 ###### Author: Tom Herrmann
+
+[Deployaed App](https://ktp-takehome.herokuapp.com/git)
 
 ## Mission
 
