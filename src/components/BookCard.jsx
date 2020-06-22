@@ -12,7 +12,7 @@ const BookCards = ({ book }) => {
       <ul>
         {bookData.map((data, index) => {
           return (
-            <li key={`${index}` + Date.now()}>
+            <li key={index + data}>
               <strong>{bookDataName[index]}</strong>
               {data}
             </li>

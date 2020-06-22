@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CharacterCard /> should render correctly 1`] = `
+<article
+  className="book-card"
+>
+  <h2>
+    Tom's Test Literature
+  </h2>
+  <ul>
+    <li
+      key="0Chris, Mary"
+    >
+      <strong>
+        Author(s): 
+      </strong>
+      Chris, Mary
+    </li>
+    <li
+      key="1Tom's Books"
+    >
+      <strong>
+        Publisher: 
+      </strong>
+      Tom's Books
+    </li>
+    <li
+      key="22020-06-11"
+    >
+      <strong>
+        Publish Date: 
+      </strong>
+      2020-06-11
+    </li>
+  </ul>
+</article>
+`;
