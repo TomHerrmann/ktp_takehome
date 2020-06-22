@@ -2,7 +2,7 @@
 
 ###### Author: Tom Herrmann
 
-[Deployaed App](https://ktp-takehome.herokuapp.com/git)
+[Deployaed App](https://ktp-takehome.herokuapp.com/)
 
 ## Mission
 
